@@ -38,6 +38,16 @@ pipeline:
           services:
             values:
               - serviceRef: manifest
+              - serviceRef: values
+              - serviceRef: artifactes
+                serviceInputs:
+                  serviceDefinition:
+                    type: Kubernetes
+                    spec:
+                      artifacts:
+                        primary:
+                          primaryArtifactRef: <+input>
+                          sources: <+input>
             metadata:
               parallel: false
         tags: {}
