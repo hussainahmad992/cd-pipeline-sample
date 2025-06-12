@@ -35,21 +35,16 @@ pipeline:
                   timeout: 10m
                   spec:
                     pruningEnabled: false
-          services:
-            values:
-              - serviceRef: manifest
-              - serviceRef: values
-              - serviceRef: artifactes
-                serviceInputs:
-                  serviceDefinition:
-                    type: Kubernetes
-                    spec:
-                      artifacts:
-                        primary:
-                          primaryArtifactRef: <+input>
-                          sources: <+input>
-            metadata:
-              parallel: false
+          service:
+            serviceRef: nginex
+            serviceInputs:
+              serviceDefinition:
+                type: Kubernetes
+                spec:
+                  artifacts:
+                    primary:
+                      primaryArtifactRef: <+input>
+                      sources: <+input>
         tags: {}
         failureStrategies:
           - onFailure:
