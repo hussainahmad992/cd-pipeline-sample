@@ -45,6 +45,7 @@ pipeline:
                     primary:
                       primaryArtifactRef: <+input>
                       sources: <+input>
+            failureStrategies: []
         tags: {}
         failureStrategies:
           - onFailure:
@@ -52,3 +53,5 @@ pipeline:
                 - AllErrors
               action:
                 type: StageRollback
+        delegateSelectors:
+          - kubernetes-delegate
