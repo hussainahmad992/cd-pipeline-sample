@@ -12,8 +12,6 @@ pipeline:
         type: Deployment
         spec:
           deploymentType: Kubernetes
-          service:
-            serviceRef: nginex
           environment:
             environmentRef: deployenv
             deployToAll: false
@@ -37,6 +35,11 @@ pipeline:
                   timeout: 10m
                   spec:
                     pruningEnabled: false
+          services:
+            values:
+              - serviceRef: manifest
+            metadata:
+              parallel: false
         tags: {}
         failureStrategies:
           - onFailure:
